@@ -8,7 +8,7 @@ buttons.forEach(button => {
     buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
     let count = 0;
     projects.forEach(project => {
-      project.hidden = selected !== 'all' && project.dataset.category !== selected;
+      project.hidden = selected !== 'all' && !project.dataset.category.split(' ').includes(selected);
       if (!project.hidden) count++;
     });
     document.querySelector('#filter-status').textContent = `${button.textContent.trim()} 분야의 프로젝트 ${count}개를 표시합니다.`;
