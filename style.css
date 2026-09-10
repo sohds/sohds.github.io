@@ -26,3 +26,5 @@
 @media(max-width:720px){.experience-highlights{grid-template-columns:1fr}.experience-highlights>a,.experience-highlights>a:first-child{padding:17px 4px}.experience-highlights>a+a{border-left:0;border-top:1px solid var(--line)}.experience-highlights strong{font-size:13px}.experience-highlights>a>span,.experience-highlights small{font-size:10px}}
 
 .publication-summary{font-size:12px;line-height:1.95;color:var(--muted);max-width:720px;margin:0 0 12px;word-break:keep-all}.publication-code{display:inline-block;font-size:11px;color:var(--green);margin-bottom:14px;text-decoration:underline;text-underline-offset:4px}.project-content h3{word-break:keep-all;overflow-wrap:anywhere}
+
+.bitamin-brand{display:flex;align-items:center;gap:12px;min-height:54px}.bitamin-brand img{width:36px;height:auto}.bitamin-brand>span{font-size:23px;font-weight:600;color:var(--ink)}.swu-brand img{width:200px;height:auto}.molit-brand{align-self:flex-start;background:#283746;padding:10px 15px;border-radius:4px}.molit-brand img{width:168px;height:auto}

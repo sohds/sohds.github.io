@@ -50,3 +50,9 @@ http://localhost:4173 에서 확인합니다. 별도 패키지 설치나 빌드 
 - VegeVision: 2023-07-20부터 2023-08-01까지. 이후 노트북 삭제와 라이선스 추가 제외.
 - 딥페이크 논문: 2025.02 발표. https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12131642
 - 호흡과 음성 대조 학습 논문: 2024.11 추계학술대회 발표. https://conf2024f.ieieweb.org/2024f/pages/programs.vm
+
+### 추가 프로젝트 로고
+
+- BITAmin: https://www.bitamin.ai.kr/images/logo_2.png
+- 서울여자대학교: https://www.swu.ac.kr/sites/swu/images/common/logo_c.png
+- 국토교통부: https://rt.molit.go.kr/images/pt/logo_bottom.png (흰색 글자 로고를 어두운 배경에 원본 비율로 사용)
