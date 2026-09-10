@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sohds.github.io/sitemap.xml
