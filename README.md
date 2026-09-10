@@ -35,3 +35,17 @@ http://localhost:4173 에서 확인합니다. 별도 패키지 설치나 빌드 
 - FIN:NECT: 공식 홈페이지의 SVG 로고. https://finnect.fintech.or.kr/program/fintech-challenge
 
 로고는 경력과 공모전 참여를 식별하기 위해 사용하며 원래 색상과 비율을 유지합니다. 로고의 권리는 각 기관에 있습니다.
+
+
+## 날짜 표기 근거
+
+2026-09-10 기준 커밋 히스토리를 월 단위로 정리했습니다. 라이선스 추가와 개발 완료 후 파일 정리는 개발 기간에서 제외했습니다.
+
+- 연금 AI Agent: 로컬 작업 저장소 2026-08-12부터 2026-09-06까지.
+- Multi-agent Trading: 2026-03-27부터 2026-05-25(한국 시간)까지.
+- Ko-ActiveETF: 2026-02-14부터 2026-02-28까지. 3월 라이선스 추가 제외.
+- XAIkit-learn: 2024-11-09부터 2025-01-27까지. 2026년 라이선스 추가 제외.
+- Fine-tuned Model Serving: 2024-10-28부터 2024-11-01(한국 시간)까지.
+- VegeVision: 2023-07-20부터 2023-08-01까지. 이후 노트북 삭제와 라이선스 추가 제외.
+- 딥페이크 논문: 2025.02 발표. https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12131642
+- 호흡과 음성 대조 학습 논문: 2024.11 추계학술대회 발표. https://conf2024f.ieieweb.org/2024f/pages/programs.vm
