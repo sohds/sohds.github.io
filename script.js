@@ -28,3 +28,11 @@ if ('IntersectionObserver' in window) {
   }, { rootMargin: '-15% 0px -60% 0px' });
   document.querySelectorAll('main section[id]').forEach(section => observer.observe(section));
 }
+
+// Make a featured project reachable even after a different category was selected.
+document.querySelectorAll('.experience-highlights a').forEach(link => {
+  link.addEventListener('click', () => {
+    const target = document.getElementById(link.hash.slice(1));
+    if (target?.hidden) document.querySelector('[data-filter="all"]').click();
+  });
+});
