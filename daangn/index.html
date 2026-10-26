@@ -68,4 +68,4 @@ themeButton.addEventListener('click',()=>{const dark=document.documentElement.da
 const stackLayers=[...document.querySelectorAll('.stack-layer')];
 function refreshStack(){const disabled=matchMedia('(max-width:800px), (prefers-reduced-motion: reduce)').matches;stackLayers.forEach((layer,index)=>{const card=layer.firstElementChild;const top=116+index*14;layer.classList.toggle('stack-static',disabled||card.getBoundingClientRect().height>innerHeight-top-18);});document.querySelector('.project-stack').classList.toggle('all-static',stackLayers.every(layer=>layer.classList.contains('stack-static')));}
 const stackObserver=new ResizeObserver(refreshStack);stackLayers.forEach(layer=>stackObserver.observe(layer.firstElementChild));addEventListener('resize',refreshStack);matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',refreshStack);refreshStack();
-</script></body></html>
+</script><script defer src="analytics.js" data-endpoint="https://sohds.goatcounter.com/count"></script></body></html>
