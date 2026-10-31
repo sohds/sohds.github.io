@@ -36,3 +36,23 @@ document.querySelectorAll('.experience-highlights a').forEach(link => {
     if (target?.hidden) document.querySelector('[data-filter="all"]').click();
   });
 });
+
+const themeToggle = document.querySelector('.theme-toggle');
+const darkQuery = matchMedia('(prefers-color-scheme: dark)');
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+  themeToggle.setAttribute('aria-label', theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
+}
+applyTheme(document.documentElement.dataset.theme);
+themeToggle.addEventListener('click', () => {
+  const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(theme);
+  try { localStorage.setItem('sohds-theme', theme); } catch {}
+});
+// Follow the system setting until the visitor picks a theme.
+darkQuery.addEventListener('change', event => {
+  let saved;
+  try { saved = localStorage.getItem('sohds-theme'); } catch {}
+  if (!saved) applyTheme(event.matches ? 'dark' : 'light');
+});
