@@ -62,3 +62,7 @@ html[data-theme="dark"] .organization-brand img,html[data-theme="dark"] .project
 /* Stacked experience cards: each card pins once it is fully read, and the next one slides over it. */
 .is-stacked{position:sticky;top:var(--stack-top);z-index:calc(1 + var(--stack-index));box-shadow:0 -12px 35px #181d1712}.is-stacked+.is-stacked{margin-top:24vh}
 @media screen{html[data-theme="dark"] .is-stacked{box-shadow:0 -12px 35px #0006}}
+
+/* Work item metrics and affiliation note. */
+.work-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:14px 0;margin:4px 0 8px;border-block:1px solid var(--line)}.work-metrics strong{display:block;font-size:22px;font-weight:500;letter-spacing:-.6px;color:var(--accent)}.work-metrics span{font-size:11px;color:var(--muted)}.work-item .metric-note{font-size:11px;line-height:1.8}
+.experience-aside>.lab-note{font-size:10px;line-height:1.8;padding-left:10px;border-left:2px solid var(--line)}
