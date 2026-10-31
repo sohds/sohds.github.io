@@ -67,3 +67,4 @@ html[data-theme="dark"] .organization-brand img,html[data-theme="dark"] .project
 .work-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:14px 0;margin:4px 0 8px;border-block:1px solid var(--line)}.work-metrics strong{display:block;font-size:22px;font-weight:500;letter-spacing:-.6px;color:var(--accent)}.work-metrics span{font-size:11px;color:var(--muted)}.work-item .metric-note{font-size:11px;line-height:1.8}
 .experience-aside>.lab-note{font-size:10px;line-height:1.8;padding-left:10px;border-left:2px solid var(--line)}
 .contact-links{flex-wrap:wrap}.contact-links a{gap:16px}@media(max-width:720px){.contact-links a[href^="mailto:"]{flex-basis:100%}}
+.pdf-download{margin:34px 0 0;font-size:12px;color:#becfae}.pdf-download a{margin-left:10px;color:#f5f7ee;border-bottom:1px solid #62867a;padding-bottom:3px}.pdf-download a:hover{color:var(--lime)}
