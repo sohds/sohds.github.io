@@ -35,7 +35,7 @@
 @media(prefers-reduced-motion:reduce){.preview-card{transition:none}.preview-card:hover{transform:none}}
 /* Project evidence: real screenshot, request example and contribution scope. */
 .review-capture{margin:0 0 18px}.review-capture a{display:block;transition:opacity .2s}.review-capture a:hover{opacity:.9}.review-capture img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px}.review-capture figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;margin-top:9px;font-size:11px;line-height:1.6;color:var(--muted)}
-.request-example{margin:0 0 15px;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-radius:6px}.request-example figcaption{font-size:11px;color:var(--muted);margin-bottom:10px}.request-example .query-example{font-size:13px;font-weight:500;color:var(--ink);margin:0 0 8px}.request-example pre{font:12px/1.8 ui-monospace,Menlo,monospace;margin:0;padding:10px 12px;background:var(--white);border-radius:4px;overflow-x:auto;color:var(--accent)}.route{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.route>*{font:11px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:3px;padding:3px 9px;color:var(--muted)}.route b{font-weight:500;background:var(--green);border-color:var(--green);color:var(--lime)}.request-example .route-note{font-size:11px;margin:10px 0 0}
+.request-example{margin:0 0 15px;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-radius:6px}.request-example figcaption{font-size:11px;color:var(--muted);margin-bottom:10px}.request-example .query-example{font-size:13px;font-weight:500;color:var(--ink);margin:0 0 8px}.experience-body,.work-item>div{min-width:0}.request-example pre{font:12px/1.8 ui-monospace,Menlo,monospace;margin:0;padding:10px 12px;background:var(--white);border-radius:4px;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--accent)}.route{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.route>*{font:11px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:3px;padding:3px 9px;color:var(--muted)}.route b{font-weight:500;background:var(--green);border-color:var(--green);color:var(--lime)}.request-example .route-note{font-size:11px;margin:10px 0 0}
 .work-item .work-note{border-left:2px solid #80a756;padding:2px 0 2px 12px;font-size:11px;line-height:1.8}
 
 /* Sticky header and theme toggle. */
@@ -58,3 +58,7 @@ html[data-theme="dark"] .hero h1>span,html[data-theme="dark"] .about-intro h2 sp
 html[data-theme="dark"] .skill-groups strong{color:#c2d1bd}html[data-theme="dark"] .publications li{border-color:var(--line)}html[data-theme="dark"] .text-link{border-color:#4f5f56}html[data-theme="dark"] .primary:hover{background:#2d7067}html[data-theme="dark"] .preview-card small{color:#9fb79a}
 html[data-theme="dark"] .organization-brand img,html[data-theme="dark"] .project-brand:not(.molit-brand) img{background:#f4f6ef;padding:6px 8px;border-radius:4px}
 }
+
+/* Stacked experience cards: each card pins once it is fully read, and the next one slides over it. */
+.is-stacked{position:sticky;top:var(--stack-top);z-index:calc(1 + var(--stack-index));box-shadow:0 -12px 35px #181d1712}.is-stacked+.is-stacked{margin-top:24vh}
+@media screen{html[data-theme="dark"] .is-stacked{box-shadow:0 -12px 35px #0006}}

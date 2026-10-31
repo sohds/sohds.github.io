@@ -56,3 +56,23 @@ darkQuery.addEventListener('change', event => {
   try { saved = localStorage.getItem('sohds-theme'); } catch {}
   if (!saved) applyTheme(event.matches ? 'dark' : 'light');
 });
+
+// Pin short cards below the header and long cards at their bottom edge, so nothing is covered before it is read.
+const stackCards = [...document.querySelectorAll('[data-stack]')];
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+function layoutStack() {
+  const headerHeight = document.querySelector('.site-header').offsetHeight;
+  stackCards.forEach((card, index) => {
+    card.classList.toggle('is-stacked', !reducedMotion.matches);
+    const topPin = headerHeight + 16 + index * 14;
+    const bottomPin = innerHeight - card.offsetHeight - 16;
+    card.style.setProperty('--stack-top', `${Math.min(topPin, bottomPin)}px`);
+    card.style.setProperty('--stack-index', index);
+  });
+}
+if (stackCards.length) {
+  new ResizeObserver(layoutStack).observe(document.body);
+  addEventListener('resize', layoutStack);
+  reducedMotion.addEventListener('change', layoutStack);
+  layoutStack();
+}
