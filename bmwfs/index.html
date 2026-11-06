@@ -10,7 +10,7 @@
   <meta property="og:description" content="현장의 문제를 이해하고, 실제로 쓰이는 AI를 만듭니다.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260910-2">
-  <link rel="stylesheet" href="style.css?v=20261106-2">
+  <link rel="stylesheet" href="style.css?v=20261106-3">
   <script>let savedTheme;try{savedTheme=localStorage.getItem('sohds-theme')}catch{}document.documentElement.dataset.theme=savedTheme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');</script>
   <script src="script.js?v=20261106-1" defer></script>
   <title>오서연 / Seoyeon Oh | AI Portfolio</title>
@@ -51,7 +51,20 @@ Entity → A 상품, 가격</pre><div class="mini-tags"><b>QA</b><span>대화</s
     </div>
   </section>
 
-  <section class="section wrap" id="experience" aria-labelledby="experience-title">
+  <section class="featured-case wrap" id="featured-case" aria-labelledby="featured-title">
+  <p class="eyebrow">FEATURED CASE / 연금 AI Agent</p>
+  <h2 id="featured-title">답이 92위로 밀린 이유를 청킹에서 찾았습니다</h2>
+  <p class="fc-lead">중도인출 질문에서 답이 계속 비었습니다. 시스템 프롬프트를 고쳐도 증상이 반복돼 검색 결과를 순위대로 열어 보니, 질문과 답이 다른 청크로 갈려 있었습니다. LLM은 분할 앵커만 반환하고 본문은 코드가 원문에서 추출하도록 바꿨습니다.</p>
+  <div class="fc-grid">
+    <div class="fc-card"><span class="fc-label">변경 전 / 길이와 제목 기준 청킹</span><strong>질문: IRP도 중도인출이 가능한가요</strong>
+      <ol class="fc-rank"><li><b>1위</b><span>doc14#73 일정 조건을 충족하면 가능합니다. [표] IRP 중도인출 사유</span><em>답 없음</em></li><li><b>2위</b><span>doc14#68 질문 리스트</span><em>목차</em></li><li class="is-answer"><b>92위</b><span>doc14#74 무주택자 주택구입, 임차보증금, 6개월 요양, 재난</span><em>진짜 답</em></li></ol></div>
+    <div class="fc-card is-after"><span class="fc-label">변경 후 / 앵커 청킹</span><strong>같은 질문, BM25 1위</strong>
+      <p class="fc-chunk">doc14#4 IRP 중도인출 가능 사유<br>일정 조건을 충족하면 중도인출이 가능합니다.<br>1. 무주택자인 가입자가 본인 명의로 주택을 구입하는 경우<br>2. 무주택자인 가입자가 주거를 목적으로 임차보증금을 부담하는 경우<br>… 사유 7개</p></div>
+  </div>
+  <p class="fc-note">순위는 2026-11-06에 저장소의 두 인덱스로 재측정한 BM25 단독 결과입니다(410청크, 358청크). 질문 1건의 사례이고 전체 개선율이 아닙니다.</p>
+  <div class="fc-facts"><div><b>원문 16건 비교</b><span>설명 없이 사라진 글자 21.9%를, 사유를 남긴 제외 구간으로 전환</span></div><div><b>숫자 검증 결함</b><span>0.7억을 7억으로 읽던 단위 변환을 고치고 금액 표기 9종을 회귀 검사로 고정</span></div><div><b>최종 검색 성능</b><span>팀 평가셋 438문항 중 채점 419문항의 근거 문서 Hit@5 93.8%. 답변 정확도가 아닙니다</span></div></div>
+</section>
+<section class="section wrap" id="experience" aria-labelledby="experience-title">
     <div class="section-heading"><div><p class="eyebrow">01 / EXPERIENCE</p><h2 id="experience-title">현장에서 배운 AI</h2></div><p>기술을 적용하는 일에서,<br>안정적으로 활용하는 일까지.</p></div>
     <article class="experience-card" id="bank-experience" data-stack>
       <div class="experience-aside"><div class="organization-brand"><img src="../assets/korea-development-bank.png" alt="한국산업은행" width="220" height="40"><span>Korea Development Bank</span></div><p class="mono">2026.06 — 2026.08</p><h3>한국산업은행</h3><p>AI디지털전략부 인턴<br>AI개발팀 | AI데이터팀</p><div class="tags"><span>LLM Serving Metrics</span><span>Knowledge Engineering</span></div></div>
