@@ -45,7 +45,7 @@ html{scroll-padding-top:96px}.site-header{position:sticky;top:0;z-index:50;width
 
 /* Dark theme: tokens first, then the surfaces that use fixed light colors. */
 @media screen{
-html[data-theme="dark"]{color-scheme:dark;--paper:#0e141c;--white:#141c28;--ink:#d9e3f1;--muted:#7c97bc;--line:#233145;--green:#243d61;--lime:#b9cbe5;--accent:#9bb3d5}
+html[data-theme="dark"]{color-scheme:dark;--paper:#0e141c;--white:#141c28;--ink:#e4ebf5;--muted:#b4c3d8;--line:#233145;--green:#243d61;--lime:#b9cbe5;--accent:#9bb3d5}
 html[data-theme="dark"] ::selection,html[data-theme="dark"] .mini-tags b{color:#17273d}
 html[data-theme="dark"] .experience-aside,html[data-theme="dark"] .experience-highlights>a:hover,html[data-theme="dark"] .research-section{background:#131b25}
 html[data-theme="dark"] .tags>span{background:#1b2635;color:#a4b6d0}
@@ -82,3 +82,5 @@ html[data-theme="dark"] .organization-brand img,html[data-theme="dark"] .project
 @media(max-width:760px){.fc-grid,.fc-facts{grid-template-columns:1fr}.fc-card{padding:18px}.fc-rank li{grid-template-columns:38px 1fr}.fc-rank em{grid-column:2}}
 html[data-theme="dark"] .fc-rank .is-answer,html[data-theme="dark"] .fc-rank .is-answer em{color:#ff8a7a}
 @media(prefers-color-scheme:dark){html:not([data-theme="light"]) .fc-rank .is-answer,html:not([data-theme="light"]) .fc-rank .is-answer em{color:#ff8a7a}}
+
+.fc-note{color:var(--muted)}

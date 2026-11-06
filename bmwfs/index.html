@@ -10,7 +10,7 @@
   <meta property="og:description" content="현장의 문제를 이해하고, 실제로 쓰이는 AI를 만듭니다.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260910-2">
-  <link rel="stylesheet" href="style.css?v=20261106-3">
+  <link rel="stylesheet" href="style.css?v=20261106-4">
   <script>let savedTheme;try{savedTheme=localStorage.getItem('sohds-theme')}catch{}document.documentElement.dataset.theme=savedTheme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');</script>
   <script src="script.js?v=20261106-1" defer></script>
   <title>오서연 / Seoyeon Oh | AI Portfolio</title>
@@ -30,7 +30,7 @@
       <h1 id="hero-title">현장의 문제를 이해하고,<br><span>실제로 쓰이는<br>AI를 만듭니다.</span></h1>
       <p class="hero-description"><strong class="intro-positioning">도메인의 맥락을 기술로 풀어내는 오서연입니다.</strong><br>금융 문서를 다루는 LLM 기능과 Agent를 설계하고,<br class="desktop-break"> 문서 파싱과 평가, API, 배포까지 구현하며 결과를 검증해 왔습니다.</p>
       <ul class="hero-focus" aria-label="지원 방향"><li class="focus-label">FOCUS</li><li>LLM 문서 처리</li><li>프롬프트 설계와 평가</li><li>AI 백엔드와 배포</li></ul>
-      <div class="hero-actions"><a class="button primary" href="#projects">프로젝트 살펴보기 <span aria-hidden="true">↘</span></a><a class="text-link" href="https://github.com/sohds" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+      <div class="hero-actions"><a class="button primary" href="#featured-case">대표 사례 살펴보기 <span aria-hidden="true">↘</span></a><a class="text-link" href="https://github.com/sohds" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
     </div>
     <div class="hero-gallery" aria-label="프로젝트 구조 미리보기">
       <div class="gallery-column">
@@ -61,7 +61,7 @@ Entity → A 상품, 가격</pre><div class="mini-tags"><b>QA</b><span>대화</s
     <div class="fc-card is-after"><span class="fc-label">변경 후 / 앵커 청킹</span><strong>같은 질문, BM25 1위</strong>
       <p class="fc-chunk">doc14#4 IRP 중도인출 가능 사유<br>일정 조건을 충족하면 중도인출이 가능합니다.<br>1. 무주택자인 가입자가 본인 명의로 주택을 구입하는 경우<br>2. 무주택자인 가입자가 주거를 목적으로 임차보증금을 부담하는 경우<br>… 사유 7개</p></div>
   </div>
-  <p class="fc-note">공모전이 끝난 뒤 저장된 두 인덱스로 재검증한 질문 1건의 BM25 단독 순위입니다. k1, b, 토크나이저, 질의는 같고 청크 구성은 다릅니다(410개, 358개). 제목과 별칭을 뺀 본문 검색에서도 1위였습니다. 전체 성능인 Hit@5와는 다른 값입니다.</p>
+  <p class="fc-note">공모전이 끝난 뒤 저장된 두 인덱스로 재검증한 질문 1건의 BM25 단독 순위입니다. 검색 설정과 질의는 동일하며, 파싱본과 청크 구성이 다른 두 인덱스를 비교했습니다(410개, 358개). 청킹 변경만의 효과로 볼 수 없고, 전체 성능인 Hit@5와도 다른 값입니다.</p>
   <div class="fc-facts"><div><b>원문 16건 비교</b><span>설명 없이 사라진 글자 21.9%를, 사유를 남긴 제외 구간으로 전환</span></div><div><b>숫자 검증 결함</b><span>0.7억을 7억으로 읽던 단위 변환을 고치고 금액 표기 9종을 회귀 검사로 고정</span></div><div><b>최종 검색 성능</b><span>팀 평가셋 438문항 중 채점 419문항의 근거 문서 Hit@5 93.8%. 답변 정확도가 아닙니다</span></div></div>
 </section>
 <section class="section wrap" id="experience" aria-labelledby="experience-title">
