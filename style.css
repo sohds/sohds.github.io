@@ -85,3 +85,5 @@ html[data-theme="dark"] .fc-rank .is-answer,html[data-theme="dark"] .fc-rank .is
 .fc-note{color:var(--muted)}
 .inline-link{color:var(--accent);border-bottom:1px solid currentColor;white-space:nowrap;font-size:.92em}
 .dash-capture{margin:14px 0 16px}
+.demo-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:9px 14px;border-radius:999px;background:var(--green);color:var(--lime);font-size:12px;font-weight:500;transition:transform .2s,background .2s}.demo-link:hover{transform:translateY(-2px)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.review-capture .demo-link{display:inline-flex}.review-capture .demo-link:hover{opacity:1}
