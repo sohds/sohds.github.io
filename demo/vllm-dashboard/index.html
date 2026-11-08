@@ -76,13 +76,27 @@ footer{padding:16px 16px 28px;font-size:11.5px;color:var(--dim);line-height:1.7}
   .intro ol{margin-left:0}
   .status{margin-left:0;width:100%}
 }
+.ptitle .q{margin-left:6px;border:1px solid var(--line);background:#202226;color:var(--blue);border-radius:3px;font:500 10.5px Inter,sans-serif;padding:2px 7px;cursor:pointer}
+.ptitle .q[aria-expanded="true"]{background:var(--blue);color:#0b0c10;border-color:var(--blue)}
+.ptitle .q:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.qbox{position:fixed;left:16px;right:16px;bottom:16px;max-width:880px;margin:0 auto;max-height:60vh;overflow:auto;background:#1b1d22;border:1px solid #3a3e46;border-radius:6px;padding:14px 16px;z-index:20;box-shadow:0 18px 50px rgba(0,0,0,.55)}.qhead{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px;font-weight:600}.qhead span{color:var(--dim);font-weight:400;font-size:11.5px}.qhead button{margin-left:auto}
+.qbox pre{margin:0;font:11.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:#d6e2ff;white-space:pre;overflow-x:auto}
+.qbox pre .f{color:#ffb357}.qbox pre .m{color:#8ec07c}.qbox pre .s{color:#f2a2c0}
+.qbox p{margin:8px 0 0;font-size:11.5px;line-height:1.6;color:#b5b7c6}
+.readme{margin:14px 16px 0;padding:14px 16px;border:1px solid var(--line);border-radius:3px;background:var(--panel)}
+.readme h2{margin:0 0 10px;font-size:13.5px;font-weight:600}
+.readme table{border-collapse:collapse;width:100%;max-width:760px;font-size:12.5px}
+.readme th,.readme td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+.readme th{color:var(--dim);font-weight:500}
+.readme p{margin:12px 0 0;font-size:12.5px;line-height:1.7;color:#b5b7c6;max-width:900px}
+.readme code{font:12px ui-monospace,Menlo,monospace;color:#ffb357}
 </style>
 </head>
 <body>
 <header class="intro">
   <a class="back" href="../../#bank-experience">← 포트폴리오로</a>
-  <div><h1>사용 목적별 vLLM 모니터링 대시보드 데모</h1><p>직접 만든 대시보드 구성을 가상 데이터로 재구성했습니다. 실제 사내 화면이나 수치가 아닙니다.</p></div>
-  <ol><li>① Purpose 필터로 용도 선택</li><li>② 패널 값은 최근 30초 p95</li><li>③ 과부하 재현으로 튀는 용도 확인</li></ol>
+  <div><h1>사용 목적별 vLLM 모니터링 대시보드 데모</h1><p>이 페이지는 Grafana가 아니라, 직접 만든 Grafana 대시보드의 구성을 웹으로 재현한 것입니다. 데이터는 가상 값이며 실제 사내 화면이나 수치가 아닙니다. 각 패널의 <b>PromQL</b> 버튼으로 실제 사용한 쿼리를 볼 수 있습니다.</p></div>
+  <ol><li>① Purpose 필터로 용도 선택</li><li>② 패널 값은 최근 30초 p95</li><li>③ 과부하 재현으로 튀는 용도 확인</li><li>④ PromQL로 집계 방식 확인</li></ol>
 </header>
 <main>
 <div class="top"><div class="logo" aria-hidden="true"></div><span class="crumb">Home › Dashboards › <b>vLLM Monitoring – Purpose View</b></span>
@@ -95,16 +109,24 @@ footer{padding:16px 16px 28px;font-size:11.5px;color:var(--dim);line-height:1.7}
 </div>
 
 <div class="grid g1">
-  <section class="panel"><div class="ptitle">사용 목적별 토큰 사용량 <small>누적</small></div><div class="stats" id="tok"></div></section>
-  <section class="panel"><div class="ptitle">서버별 부하 <i>i</i><small>running requests</small></div><svg class="ts" id="srv" height="168"></svg><div class="legend"><span style="--c:#5794f2">server-a</span><span style="--c:#b877d9">server-b</span></div></section>
+  <section class="panel"><div class="ptitle" data-q="tok">사용 목적별 토큰 사용량 <small>선택 기간</small></div><div class="stats" id="tok"></div></section>
+  <section class="panel"><div class="ptitle" data-q="srv">서버별 부하 <small>running requests</small></div><svg class="ts" id="srv" height="168"></svg><div class="legend"><span style="--c:#5794f2">server-a</span><span style="--c:#b877d9">server-b</span></div></section>
 </div>
 <div class="row-title">Purpose별 Traffic &amp; Latency</div>
 <div class="grid g2" id="lat"></div>
 <div class="grid" style="margin-top:8px">
-  <section class="panel"><div class="ptitle">Queue Time P95 <i>i</i></div><svg class="ts" id="queue" height="176"></svg><div class="legend" id="qleg"></div></section>
+  <section class="panel"><div class="ptitle" data-q="queue">Queue Time P95</div><svg class="ts" id="queue" height="176"></svg><div class="legend" id="qleg"></div></section>
 </div>
 <div class="collapsed" aria-hidden="true"><div>Top-line Summary<small>(5 panels)</small></div><div>Latency &amp; User Experience<small>(3 panels)</small></div><div>Token Throughput &amp; Workload<small>(5 panels)</small></div></div>
 </main>
+<section class="readme" aria-labelledby="readme-title"><h2 id="readme-title">TTFT·TPOT·E2E를 함께 보는 이유</h2>
+<table><thead><tr><th>관찰 패턴</th><th>우선 의심할 원인</th></tr></thead><tbody>
+<tr><td>TTFT 상승, TPOT 정상</td><td>대기열 증가 또는 긴 prompt의 prefill 부담</td></tr>
+<tr><td>TTFT 정상, TPOT 상승</td><td>decode 단계 또는 GPU 처리 성능 저하</td></tr>
+<tr><td>E2E만 크게 상승</td><td>긴 출력 요청 또는 응답 길이 증가</td></tr>
+<tr><td>세 지표 모두 상승</td><td>서버 포화 또는 전반적인 처리 성능 저하</td></tr>
+</tbody></table>
+<p>Counter인 토큰·요청 수에는 <code>increase()</code>와 <code>rate()</code>를, 현재값인 Gauge(running requests)에는 원본값을, 지연 histogram에는 <code>histogram_quantile()</code>을 적용했습니다. 평균 대신 p95를 써서 일부 느린 요청이 평균에 가려지지 않도록 했습니다.</p></section>
 <footer>용도 이름, 서버 이름, 모든 수치는 설명을 위한 가상 값입니다. 화면은 브라우저에서 생성한 데이터로 그려지며 외부로 전송되는 데이터는 없습니다.</footer>
 
 <script>
@@ -164,7 +186,7 @@ function ts(svg,list,{unit='',axis=true}){
 // 패널 뼈대
 const tokEl=document.getElementById('tok'), latEl=document.getElementById('lat'), sel$=document.getElementById('purpose');
 P.forEach((p,i)=>{sel$.add(new Option(p.k,i));tokEl.insertAdjacentHTML('beforeend',`<div class="stat" data-i="${i}"><div class="n">${p.k}</div><div class="v"></div><div class="d"></div><svg></svg></div>`)});
-['ttft','tpot','e2e','rps'].forEach(key=>latEl.insertAdjacentHTML('beforeend',`<section class="panel" data-k="${key}"><div class="ptitle">${M[key].t} <i>i</i></div><div class="mstats">${P.map((p,i)=>`<div data-i="${i}">${p.k}<b></b></div>`).join('')}</div><svg class="ts" height="108"></svg></section>`));
+['ttft','tpot','e2e','rps'].forEach(key=>latEl.insertAdjacentHTML('beforeend',`<section class="panel" data-k="${key}"><div class="ptitle" data-q="${key}">${M[key].t}</div><div class="mstats">${P.map((p,i)=>`<div data-i="${i}">${p.k}<b></b></div>`).join('')}</div><svg class="ts" height="108"></svg></section>`));
 document.getElementById('qleg').innerHTML=P.map(p=>`<span style="--c:${p.c}">${p.k}</span>`).join('');
 
 function render(){
@@ -193,6 +215,25 @@ const setPaused=v=>{paused=v;pauseBtn.textContent=v?'▶ 재생':'❚❚ 일시�
 pauseBtn.onclick=()=>setPaused(!paused);
 sel$.onchange=()=>{sel=sel$.value;render()};
 addEventListener('resize',render);
+// 노트에 정리한 실제 쿼리. purpose 값만 가상 이름으로 바뀌어 보입니다.
+const Q={
+  tok:['sum by (purpose) (\n  increase(vllm:prompt_tokens_total{job="vllm"}[$__range])\n  +\n  increase(vllm:generation_tokens_total{job="vllm"}[$__range])\n)','누적 Counter라 원본값은 프로세스 시작 이후의 합계입니다. 선택한 기간의 사용량을 보려고 increase()를 적용했습니다.'],
+  srv:['sum by (server) (\n  vllm:num_requests_running{job="vllm"}\n)','현재 동시 실행 요청 수를 나타내는 Gauge라 rate()를 적용하지 않고 원본값을 합산했습니다.'],
+  ttft:['histogram_quantile(\n  0.95,\n  sum by (purpose, le) (\n    rate(vllm:time_to_first_token_seconds_bucket{\n      job="vllm", purpose=~"$purpose"\n    }[$__rate_interval])\n  )\n)','첫 토큰까지의 시간입니다. 대기열과 prefill 부담이 함께 드러납니다. 버킷을 purpose와 le로 합산한 뒤 p95를 계산했습니다.'],
+  tpot:['histogram_quantile(\n  0.95,\n  sum by (purpose, le) (\n    rate(vllm:inter_token_latency_seconds_bucket{\n      job="vllm", purpose=~"$purpose"\n    }[$__rate_interval])\n  )\n)','출력 토큰 사이의 간격입니다. vLLM 버전에 따라 time_per_output_token_seconds_bucket 이름을 쓰기도 해서 /metrics에서 확인한 뒤 적용했습니다.'],
+  e2e:['histogram_quantile(\n  0.95,\n  sum by (purpose, le) (\n    rate(vllm:e2e_request_latency_seconds_bucket{\n      job="vllm", purpose=~"$purpose"\n    }[$__rate_interval])\n  )\n)','요청부터 응답 완료까지 사용자가 기다린 전체 시간입니다.'],
+  rps:['sum by (purpose) (\n  rate(vllm:request_success_total{\n    job="vllm", purpose=~"$purpose"\n  }[$__rate_interval])\n)','누적 Counter라 rate()를 적용했습니다. 게이트웨이 유입량이 아니라 vLLM이 완료한 요청 기준이라 Completed RPS로 이름 붙였습니다.'],
+  queue:['histogram_quantile(\n  0.95,\n  sum by (purpose, le) (\n    rate(vllm:request_queue_time_seconds_bucket{\n      job="vllm", purpose=~"$purpose"\n    }[$__rate_interval])\n  )\n)','TTFT 상승이 대기열 때문인지 긴 prompt의 prefill 때문인지 구분하려고 추가한 패널입니다.']
+};
+const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'})[c]);
+const hl=t=>esc(t).replace(/"([^"]*)"/g,'<span class="s">"$1"</span>').replace(/\b(histogram_quantile|sum by|increase|rate)\b/g,'<span class="f">$1</span>').replace(/(vllm:\w+)/g,'<span class="m">$1</span>');
+document.querySelectorAll('.ptitle[data-q]').forEach((h,n)=>{const [code,why]=Q[h.dataset.q],panel=h.closest('.panel'),id='q'+n;
+  const b=document.createElement('button');b.type='button';b.className='q';b.textContent='PromQL';b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls',id);
+  const box=document.createElement('div');box.className='qbox';box.id=id;box.hidden=true;const name=h.firstChild.textContent.trim();box.setAttribute('role','dialog');box.setAttribute('aria-label',name+' PromQL');box.innerHTML=`<div class="qhead">${name}<span>PromQL</span><button class="btn" type="button">닫기 ✕</button></div><pre>${hl(code)}</pre><p>${why}</p>`;
+  b.onclick=()=>{const open=box.hidden;document.querySelectorAll('.qbox').forEach(x=>x.hidden=true);document.querySelectorAll('.ptitle .q').forEach(x=>x.setAttribute('aria-expanded','false'));box.hidden=!open;b.setAttribute('aria-expanded',open)};
+  box.querySelector('.qhead button').onclick=()=>{box.hidden=true;b.setAttribute('aria-expanded','false');b.focus()};
+  h.appendChild(b);document.body.appendChild(box)});
+addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.qbox').forEach(x=>x.hidden=true);document.querySelectorAll('.ptitle .q').forEach(x=>x.setAttribute('aria-expanded','false'))}});
 if(matchMedia('(prefers-reduced-motion: reduce)').matches)setPaused(true);
 render();
 setInterval(()=>{if(paused)return;step();if(auto&&t===N+6)burstLeft=BURST;render()},1000);
