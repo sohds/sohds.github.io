@@ -84,3 +84,4 @@ html[data-theme="dark"] .fc-rank .is-answer,html[data-theme="dark"] .fc-rank .is
 
 .fc-note{color:var(--muted)}
 .inline-link{color:var(--accent);border-bottom:1px solid currentColor;white-space:nowrap;font-size:.92em}
+.dash-capture{margin:14px 0 16px}
