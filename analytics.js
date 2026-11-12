@@ -9,6 +9,7 @@
     '/': ['main', 'Main portfolio'],
     '/bmwfs/': ['bmwfs', 'BMW FS portfolio'],
     '/healingpaper/': ['healingpaper', 'Healingpaper portfolio'],
+    '/kakaobank/': ['kakaobank', 'KakaoBank portfolio'],
     '/demo/vllm-dashboard/': ['vllm-demo', 'vLLM dashboard demo']
   };
   const path = location.pathname.replace(/index\.html$/, '');
